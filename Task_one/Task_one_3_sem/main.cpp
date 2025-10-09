@@ -1,4 +1,4 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include <memory>
 #include "Matrix.h"
 #include "RandomGenerator.h"
@@ -14,15 +14,15 @@ int input() {
 int main() {
     setlocale(LC_ALL, "Russian");
 
-    std::cout << "Ââåäèòå ðàçìåð ìàññèâà: ";
+    std::cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ñ€Ð°Ð·Ð¼ÐµÑ€ Ð¼Ð°ÑÑÐ¸Ð²Ð°: ";
     size_t n = input();
 
     Matrix matrix(n);
 
-    std::cout << "Âûáåðèòå ñïîñîá çàïîëíåíèÿ:\n";
-    std::cout << "1 - Ñëó÷àéíûå ÷èñëà [-10;20]\n";
-    std::cout << "2 - Ââîä ñ êëàâèàòóðû\n";
-    std::cout << "3 - Çàïîëíåíèå íóëÿìè\n";
+    std::cout << "Ð’Ñ‹Ð±ÐµÑ€Ð¸Ñ‚Ðµ ÑÐ¿Ð¾ÑÐ¾Ð± Ð·Ð°Ð¿Ð¾Ð»Ð½ÐµÐ½Ð¸Ñ:\n";
+    std::cout << "1 - Ð¡Ð»ÑƒÑ‡Ð°Ð¹Ð½Ñ‹Ðµ Ñ‡Ð¸ÑÐ»Ð° [-10;20]\n";
+    std::cout << "2 - Ð’Ð²Ð¾Ð´ Ñ ÐºÐ»Ð°Ð²Ð¸Ð°Ñ‚ÑƒÑ€Ñ‹\n";
+    std::cout << "3 - Ð—Ð°Ð¿Ð¾Ð»Ð½ÐµÐ½Ð¸Ðµ Ð½ÑƒÐ»ÑÐ¼Ð¸\n";
 
     int choice = input();
     std::unique_ptr<Generator> generator;
@@ -38,37 +38,37 @@ int main() {
         generator = std::make_unique<ConstantsGenerator>(0);
         break;
     default:
-        std::cout << "Íåâåðíûé âûáîð!\n";
+        std::cout << "ÐÐµÐ²ÐµÑ€Ð½Ñ‹Ð¹ Ð²Ñ‹Ð±Ð¾Ñ€!\n";
         return 1;
     }
 
     generator->fill(matrix);
 
-    std::cout << "Ñîçäàííûé ìàññèâ:\n" << matrix.toString() << std::endl;
+    std::cout << "Ð¡Ð¾Ð·Ð´Ð°Ð½Ð½Ñ‹Ð¹ Ð¼Ð°ÑÑÐ¸Ð²:\n" << matrix.toString() << std::endl;
 
-    // Çàìåíà ïîñëåäíåãî îòðèöàòåëüíîãî ýëåìåíòà
+    // Ð—Ð°Ð¼ÐµÐ½Ð° Ð¿Ð¾ÑÐ»ÐµÐ´Ð½ÐµÐ³Ð¾ Ð¾Ñ‚Ñ€Ð¸Ñ†Ð°Ñ‚ÐµÐ»ÑŒÐ½Ð¾Ð³Ð¾ ÑÐ»ÐµÐ¼ÐµÐ½Ñ‚Ð°
     Matrix clonedMatrix = matrix;
     clonedMatrix.replaceLastNegativeWithPenultimate();
-    std::cout << "Ïîñëå çàìåíû ïîñëåäíåãî îòðèöàòåëüíîãî ýëåìåíòà:\n"
+    std::cout << "ÐŸÐ¾ÑÐ»Ðµ Ð·Ð°Ð¼ÐµÐ½Ñ‹ Ð¿Ð¾ÑÐ»ÐµÐ´Ð½ÐµÐ³Ð¾ Ð¾Ñ‚Ñ€Ð¸Ñ†Ð°Ñ‚ÐµÐ»ÑŒÐ½Ð¾Ð³Ð¾ ÑÐ»ÐµÐ¼ÐµÐ½Ñ‚Ð°:\n"
         << clonedMatrix.toString() << std::endl;
 
-    // Óäàëåíèå ýëåìåíòîâ ñ ÷åòíîé ïåðâîé öèôðîé
+    // Ð£Ð´Ð°Ð»ÐµÐ½Ð¸Ðµ ÑÐ»ÐµÐ¼ÐµÐ½Ñ‚Ð¾Ð² Ñ Ñ‡ÐµÑ‚Ð½Ð¾Ð¹ Ð¿ÐµÑ€Ð²Ð¾Ð¹ Ñ†Ð¸Ñ„Ñ€Ð¾Ð¹
     Matrix filteredMatrix = matrix.removeEvenFirstDigitElements();
-    std::cout << "Ïîñëå óäàëåíèÿ ýëåìåíòîâ ñ ÷åòíîé ïåðâîé öèôðîé:\n"
+    std::cout << "ÐŸÐ¾ÑÐ»Ðµ ÑƒÐ´Ð°Ð»ÐµÐ½Ð¸Ñ ÑÐ»ÐµÐ¼ÐµÐ½Ñ‚Ð¾Ð² Ñ Ñ‡ÐµÑ‚Ð½Ð¾Ð¹ Ð¿ÐµÑ€Ð²Ð¾Ð¹ Ñ†Ð¸Ñ„Ñ€Ð¾Ð¹:\n"
         << filteredMatrix.toString() << std::endl;
 
-    // Ñîçäàíèå ìàññèâà A èç D
+    // Ð¡Ð¾Ð·Ð´Ð°Ð½Ð¸Ðµ Ð¼Ð°ÑÑÐ¸Ð²Ð° A Ð¸Ð· D
     Matrix arrayA = matrix.createArrayAFromD();
-    std::cout << "Ìàññèâ A ñîçäàííûé èç D:\n"
+    std::cout << "ÐœÐ°ÑÑÐ¸Ð² A ÑÐ¾Ð·Ð´Ð°Ð½Ð½Ñ‹Ð¹ Ð¸Ð· D:\n"
         << arrayA.toString() << std::endl;
 
-    // Äåìîíñòðàöèÿ îïåðàòîðîâ
+    // Ð”ÐµÐ¼Ð¾Ð½ÑÑ‚Ñ€Ð°Ñ†Ð¸Ñ Ð¾Ð¿ÐµÑ€Ð°Ñ‚Ð¾Ñ€Ð¾Ð²
     Matrix shiftedLeft = matrix << 1;
     Matrix shiftedRight = matrix >> 1;
 
-    std::cout << "Ìàññèâ ïîñëå ñäâèãà âëåâî íà 1:\n"
+    std::cout << "ÐœÐ°ÑÑÐ¸Ð² Ð¿Ð¾ÑÐ»Ðµ ÑÐ´Ð²Ð¸Ð³Ð° Ð²Ð»ÐµÐ²Ð¾ Ð½Ð° 1:\n"
         << shiftedLeft.toString() << std::endl;
-    std::cout << "Ìàññèâ ïîñëå ñäâèãà âïðàâî íà 1:\n"
+    std::cout << "ÐœÐ°ÑÑÐ¸Ð² Ð¿Ð¾ÑÐ»Ðµ ÑÐ´Ð²Ð¸Ð³Ð° Ð²Ð¿Ñ€Ð°Ð²Ð¾ Ð½Ð° 1:\n"
         << shiftedRight.toString() << std::endl;
 
     return 0;

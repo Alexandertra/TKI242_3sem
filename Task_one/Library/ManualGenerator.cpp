@@ -1,4 +1,4 @@
-#include "ManualGenerator.h"
+﻿#include "ManualGenerator.h"
 
 ManualGenerator::ManualGenerator(std::function<int()> inputFunc)
     : inputFunction(inputFunc) {

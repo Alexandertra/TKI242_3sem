@@ -1,4 +1,4 @@
-#pragma once
+п»ї#pragma once
 #include <memory>
 #include <vector>
 #include <string>
@@ -8,16 +8,16 @@ private:
     std::unique_ptr<std::vector<int>> data;
 
 public:
-    // Конструкторы по умолчанию
+    // РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂС‹ РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ
     Matrix();
     Matrix(size_t size);
     Matrix(const Matrix& other);
     Matrix(Matrix&& other) noexcept;
 
-    // Деструктор
+    // Р”РµСЃС‚СЂСѓРєС‚РѕСЂ
     ~Matrix();
 
-    // Операторы
+    // РћРїРµСЂР°С‚РѕСЂС‹
     Matrix& operator=(const Matrix& other);
     Matrix& operator=(Matrix&& other) noexcept;
     Matrix operator<<(int shift) const;
@@ -26,13 +26,13 @@ public:
     const int& operator[](size_t index) const;
     int& operator*();
 
-    // Методы
+    // РњРµС‚РѕРґС‹
     size_t size() const;
     std::string toString() const;
     void resize(size_t newSize);
     void clear();
 
-    // Алгоритмы обработки
+    // РђР»РіРѕСЂРёС‚РјС‹ РѕР±СЂР°Р±РѕС‚РєРё
     void replaceLastNegativeWithPenultimate();
     Matrix removeEvenFirstDigitElements() const;
     Matrix createArrayAFromD() const;

@@ -1,4 +1,4 @@
-#include "ConstantsGenerator.h"
+﻿#include "ConstantsGenerator.h"
 
 ConstantsGenerator::ConstantsGenerator(int value)
     : constantValue(value) {

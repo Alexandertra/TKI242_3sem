@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 #include "Generator.h"
 
 class RandomGenerator : public Generator {

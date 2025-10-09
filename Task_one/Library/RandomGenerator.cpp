@@ -1,4 +1,4 @@
-#include "RandomGenerator.h"
+﻿#include "RandomGenerator.h"
 #include <cstdlib>
 #include <ctime>
 
