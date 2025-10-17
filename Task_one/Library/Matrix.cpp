@@ -2,6 +2,7 @@
 #include <algorithm>
 #include <sstream>
 #include <cmath>
+#include <stdexcept>
 
 Matrix::Matrix() : data(std::make_unique<std::vector<int>>()) {}
 
@@ -14,8 +15,6 @@ Matrix::Matrix(const Matrix& other)
 Matrix::Matrix(Matrix&& other) noexcept
     : data(std::move(other.data)) {
 }
-
-Matrix::~Matrix() = default;
 
 Matrix& Matrix::operator=(const Matrix& other) {
     if (this != &other) {
@@ -48,14 +47,23 @@ Matrix Matrix::operator>>(int shift) const {
 }
 
 int& Matrix::operator[](size_t index) {
+    if (index >= data->size()) {
+        throw std::out_of_range("Matrix index out of range");
+    }
     return (*data)[index];
 }
 
 const int& Matrix::operator[](size_t index) const {
+    if (index >= data->size()) {
+        throw std::out_of_range("Matrix index out of range");
+    }
     return (*data)[index];
 }
 
 int& Matrix::operator*() {
+    if (data->empty()) {
+        throw std::out_of_range("Cannot dereference empty matrix");
+    }
     return data->front();
 }
 
@@ -92,7 +100,8 @@ int Matrix::getFirstDigit(int number) const {
     return number;
 }
 
-void Matrix::replaceLastNegativeWithPenultimate() {
+// Реализация NegativeReplacerMatrix
+void NegativeReplacerMatrix::process() {
     if (data->size() < 2) return;
 
     int lastNegativeIndex = -1;
@@ -108,7 +117,16 @@ void Matrix::replaceLastNegativeWithPenultimate() {
     }
 }
 
-Matrix Matrix::removeEvenFirstDigitElements() const {
+std::string NegativeReplacerMatrix::getTaskDescription() const {
+    return "Replace last negative element with penultimate element";
+}
+
+// Реализация EvenDigitRemoverMatrix
+void EvenDigitRemoverMatrix::process() {
+    *this = removeEvenFirstDigitElements();
+}
+
+Matrix EvenDigitRemoverMatrix::removeEvenFirstDigitElements() const {
     std::vector<int> result;
     for (const auto& element : *data) {
         int firstDigit = getFirstDigit(element);
@@ -117,13 +135,22 @@ Matrix Matrix::removeEvenFirstDigitElements() const {
         }
     }
 
-    Matrix newMatrix;
+    EvenDigitRemoverMatrix newMatrix;
     *newMatrix.data = result;
     return newMatrix;
 }
 
-Matrix Matrix::createArrayAFromD() const {
-    Matrix result(data->size());
+std::string EvenDigitRemoverMatrix::getTaskDescription() const {
+    return "Remove elements with even first digit";
+}
+
+// Реализация ArrayCreatorMatrix
+void ArrayCreatorMatrix::process() {
+    *this = createArrayAFromD();
+}
+
+Matrix ArrayCreatorMatrix::createArrayAFromD() const {
+    ArrayCreatorMatrix result(data->size());
     for (size_t i = 0; i < data->size(); ++i) {
         if (i % 2 == 0) {
             (*result.data)[i] = (*data)[i] * (*data)[i];
@@ -133,4 +160,8 @@ Matrix Matrix::createArrayAFromD() const {
         }
     }
     return result;
+}
+
+std::string ArrayCreatorMatrix::getTaskDescription() const {
+    return "Create array A from D (even index: square, odd index: double)";
 }
