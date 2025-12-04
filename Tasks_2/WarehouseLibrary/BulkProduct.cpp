@@ -1,7 +1,7 @@
 #include "BulkProduct.h"
 
 BulkProduct::BulkProduct(const std::string& name, const std::string& code,
-    double pricePerUnit, double weight, const std::string& unit)
+    const double pricePerUnit, const double weight, const std::string& unit)
     : Product(name, code, pricePerUnit, static_cast<int>(weight)),
     weight(weight), unit(unit) {
 }

@@ -1,7 +1,7 @@
 #include "PackagedProduct.h"
 
 PackagedProduct::PackagedProduct(const std::string& name, const std::string& code,
-    double price, int quantity, int itemsPerPackage,
+    const double price, const int quantity, const int itemsPerPackage,
     const std::string& packageType)
     : Product(name, code, price, quantity),
     itemsPerPackage(itemsPerPackage),
