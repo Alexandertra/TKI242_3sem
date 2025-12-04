@@ -1,7 +1,7 @@
 #include "Product.h"
 
 Product::Product(const std::string& name, const std::string& code,
-    double price, int quantity)
+    const double price, const int quantity)
     : name(name), code(code), basePrice(price), quantity(quantity) {
 }
 

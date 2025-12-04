@@ -9,7 +9,7 @@ private:
     double discountRate;
 
 public:
-    Customer(const std::string& name, const std::string& id, double discountRate = 0.0);
+    Customer(const std::string& name, const std::string& id, const double discountRate = 0.0);
 
     std::string getInfo() const;
     double getDiscountRate() const;

@@ -10,7 +10,7 @@ protected:
     int quantity;
 
 public:
-    Product(const std::string& name, const std::string& code, double price, int quantity);
+    Product(const std::string& name, const std::string& code, const double price, const int quantity);
     virtual ~Product() = default;
 
     virtual std::string getInfo() const = 0;

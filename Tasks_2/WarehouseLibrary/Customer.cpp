@@ -1,6 +1,6 @@
 #include "Customer.h"
 
-Customer::Customer(const std::string& name, const std::string& id, double discountRate)
+Customer::Customer(const std::string& name, const std::string& id, const double discountRate)
     : name(name), id(id), discountRate(discountRate) {
 }
 
