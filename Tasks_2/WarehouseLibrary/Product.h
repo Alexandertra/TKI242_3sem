@@ -13,9 +13,9 @@ public:
     Product(const std::string& name, const std::string& code, double price, int quantity);
     virtual ~Product() = default;
 
-    virtual std::string getInfo() const;
-    virtual double calculatePrice(int quantity = 1) const;
-    virtual std::string getType() const;
+    virtual std::string getInfo() const = 0;
+    virtual double calculatePrice(int quantity = 1) const = 0;
+    virtual std::string getType() const = 0;
 
     // Getters
     std::string getName() const;
@@ -24,6 +24,6 @@ public:
     int getQuantity() const;
 
     // Setters
-    void setQuantity(int newQuantity);
-    void setBasePrice(double newPrice);
+    void setQuantity(const int newQuantity);
+    void setBasePrice(const double newPrice);
 };

@@ -1,4 +1,4 @@
-#include <iostream>
+п»ї#include <iostream>
 #include <vector>
 #include <memory>
 #include "Product.h"
@@ -8,13 +8,15 @@
 #include "Warehouse.h"
 
 int main() {
-    // Создание склада
+    setlocale(LC_ALL, "Russian");
+
+    // РЎРѕР·РґР°РЅРёРµ СЃРєР»Р°РґР°
     Warehouse warehouse;
 
-    // Создание коллекции продуктов
+    // РЎРѕР·РґР°РЅРёРµ РєРѕР»Р»РµРєС†РёРё РїСЂРѕРґСѓРєС‚РѕРІ
     std::vector<std::shared_ptr<Product>> products;
 
-    // Добавление различных типов продуктов
+    // Р”РѕР±Р°РІР»РµРЅРёРµ СЂР°Р·Р»РёС‡РЅС‹С… С‚РёРїРѕРІ РїСЂРѕРґСѓРєС‚РѕРІ
     products.push_back(std::make_shared<PackagedProduct>(
         "Sugar 1kg", "SUG001", 45.50, 100, 10, "Box"));
 
@@ -30,18 +32,18 @@ int main() {
     products.push_back(std::make_shared<PackagedProduct>(
         "Salt 0.5kg", "SLT005", 15.25, 200, 20, "Package"));
 
-    // Добавление продуктов на склад
+    // Р”РѕР±Р°РІР»РµРЅРёРµ РїСЂРѕРґСѓРєС‚РѕРІ РЅР° СЃРєР»Р°Рґ
     for (const auto& product : products) {
         warehouse.addProduct(product);
     }
 
-    // Добавление клиентов
+    // Р”РѕР±Р°РІР»РµРЅРёРµ РєР»РёРµРЅС‚РѕРІ
     warehouse.addCustomer(std::make_shared<Customer>("Supermarket Chain", "CUST001", 0.1));
     warehouse.addCustomer(std::make_shared<Customer>("Local Store", "CUST002", 0.05));
     warehouse.addCustomer(std::make_shared<Customer>("Wholesale Buyer", "CUST003", 0.15));
     warehouse.addCustomer(std::make_shared<Customer>("New Client", "CUST004", 0.0));
 
-    // Демонстрация: итерация по коллекции базового типа
+    // Р”РµРјРѕРЅСЃС‚СЂР°С†РёСЏ: РёС‚РµСЂР°С†РёСЏ РїРѕ РєРѕР»Р»РµРєС†РёРё Р±Р°Р·РѕРІРѕРіРѕ С‚РёРїР°
     std::cout << "=== CURRENT WAREHOUSE ASSORTMENT ===" << std::endl;
     for (const auto& product : products) {
         std::cout << product->getInfo() << std::endl;
@@ -50,20 +52,20 @@ int main() {
         std::cout << "---" << std::endl;
     }
 
-    // Демонстрация клиентов со скидкой
+    // Р”РµРјРѕРЅСЃС‚СЂР°С†РёСЏ РєР»РёРµРЅС‚РѕРІ СЃРѕ СЃРєРёРґРєРѕР№
     std::cout << "\n=== CUSTOMERS WITH DISCOUNTS ===" << std::endl;
     auto customersWithDiscount = warehouse.getCustomersWithDiscount();
     for (const auto& customer : customersWithDiscount) {
         std::cout << customer->getInfo() << std::endl;
 
-        // Демонстрация применения скидки
+        // Р”РµРјРѕРЅСЃС‚СЂР°С†РёСЏ РїСЂРёРјРµРЅРµРЅРёСЏ СЃРєРёРґРєРё
         double sampleAmount = 1000.0;
         double discountedAmount = customer->applyDiscount(sampleAmount);
         std::cout << "Sample discount on " << sampleAmount << ": " << discountedAmount << std::endl;
         std::cout << "---" << std::endl;
     }
 
-    // Демонстрация различных расчетов цен
+    // Р”РµРјРѕРЅСЃС‚СЂР°С†РёСЏ СЂР°Р·Р»РёС‡РЅС‹С… СЂР°СЃС‡РµС‚РѕРІ С†РµРЅ
     std::cout << "\n=== PRICE CALCULATIONS DEMO ===" << std::endl;
     for (const auto& product : products) {
         std::cout << product->getName() << ":" << std::endl;

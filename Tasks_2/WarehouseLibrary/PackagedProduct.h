@@ -8,7 +8,7 @@ private:
 
 public:
     PackagedProduct(const std::string& name, const std::string& code,
-        double price, int quantity, int itemsPerPackage,
+        const double price, int quantity, int itemsPerPackage,
         const std::string& packageType);
 
     std::string getInfo() const override;

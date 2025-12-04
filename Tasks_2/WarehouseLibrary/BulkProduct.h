@@ -8,7 +8,7 @@ private:
 
 public:
     BulkProduct(const std::string& name, const std::string& code,
-        double pricePerUnit, double weight, const std::string& unit);
+        const double pricePerUnit, const double weight, const std::string& unit);
 
     std::string getInfo() const override;
     double calculatePrice(int quantity = 1) const override;
@@ -16,5 +16,5 @@ public:
 
     double getWeight() const;
     std::string getUnit() const;
-    void setWeight(double newWeight);
+    void setWeight(const double newWeight);
 }; 
