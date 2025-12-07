@@ -4,6 +4,7 @@
 #include "RandomGenerator.h"
 #include "ManualGenerator.h"
 #include "ConstantsGenerator.h"
+#include "Config.h"
 
 int input() {
     int value;
@@ -14,61 +15,61 @@ int input() {
 int main() {
     setlocale(LC_ALL, "Russian");
 
-    std::cout << "Введите размер массива: ";
+    std::cout << Config::Messages::ENTER_ARRAY_SIZE;
     size_t n = input();
 
     Matrix matrix(n);
 
-    std::cout << "Выберите способ заполнения:\n";
-    std::cout << "1 - Случайные числа [-10;20]\n";
-    std::cout << "2 - Ввод с клавиатуры\n";
-    std::cout << "3 - Заполнение нулями\n";
+    std::cout << Config::Messages::CHOOSE_FILL_METHOD;
+    std::cout << Config::Messages::OPTION_RANDOM;
+    std::cout << Config::Messages::OPTION_MANUAL;
+    std::cout << Config::Messages::OPTION_CONSTANT;
 
     int choice = input();
     std::unique_ptr<Generator> generator;
 
     switch (choice) {
-    case 1:
-        generator = std::make_unique<RandomGenerator>(-10, 20);
+    case Config::CHOICE_RANDOM:
+        generator = std::make_unique<RandomGenerator>(
+            Config::RANDOM_MIN_VALUE,
+            Config::RANDOM_MAX_VALUE
+        );
         break;
-    case 2:
+    case Config::CHOICE_MANUAL:
         generator = std::make_unique<ManualGenerator>(input);
         break;
-    case 3:
-        generator = std::make_unique<ConstantsGenerator>(0);
+    case Config::CHOICE_CONSTANT:
+        generator = std::make_unique<ConstantsGenerator>(Config::CONSTANT_FILL_VALUE);
         break;
     default:
-        std::cout << "Неверный выбор!\n";
+        std::cout << Config::Messages::INVALID_CHOICE;
         return 1;
     }
 
     generator->fill(matrix);
 
-    std::cout << "Созданный массив:\n" << matrix.toString() << std::endl;
+    std::cout << Config::Messages::CREATED_ARRAY
+        << matrix.toString() << std::endl;
 
-    // Замена последнего отрицательного элемента
     Matrix clonedMatrix = matrix;
     clonedMatrix.replaceLastNegativeWithPenultimate();
-    std::cout << "После замены последнего отрицательного элемента:\n"
+    std::cout << Config::Messages::AFTER_REPLACEMENT
         << clonedMatrix.toString() << std::endl;
 
-    // Удаление элементов с четной первой цифрой
     Matrix filteredMatrix = matrix.removeEvenFirstDigitElements();
-    std::cout << "После удаления элементов с четной первой цифрой:\n"
+    std::cout << Config::Messages::AFTER_FILTERING
         << filteredMatrix.toString() << std::endl;
 
-    // Создание массива A из D
     Matrix arrayA = matrix.createArrayAFromD();
-    std::cout << "Массив A созданный из D:\n"
+    std::cout << Config::Messages::ARRAY_A_FROM_D
         << arrayA.toString() << std::endl;
 
-    // Демонстрация операторов
-    Matrix shiftedLeft = matrix << 1;
-    Matrix shiftedRight = matrix >> 1;
+    Matrix shiftedLeft = matrix << Config::SHIFT_AMOUNT;
+    Matrix shiftedRight = matrix >> Config::SHIFT_AMOUNT;
 
-    std::cout << "Массив после сдвига влево на 1:\n"
+    std::cout << Config::Messages::SHIFT_LEFT
         << shiftedLeft.toString() << std::endl;
-    std::cout << "Массив после сдвига вправо на 1:\n"
+    std::cout << Config::Messages::SHIFT_RIGHT
         << shiftedRight.toString() << std::endl;
 
     return 0;

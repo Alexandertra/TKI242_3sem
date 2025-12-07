@@ -27,7 +27,10 @@
     <ClInclude Include="ManualGenerator.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="ConstantGenerator.h">
+    <ClInclude Include="ConstantsGenerator.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="Config.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
   </ItemGroup>

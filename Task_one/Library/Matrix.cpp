@@ -48,23 +48,22 @@ Matrix Matrix::operator>>(int shift) const {
 
 int& Matrix::operator[](size_t index) {
     if (index >= data->size()) {
-        throw std::out_of_range("Matrix index out of range");
+        throw std::out_of_range(
+            "Matrix::operator[]: индекс " + std::to_string(index) +
+            " выходит за пределы [0, " + std::to_string(data->size() - 1) + "]"
+        );
     }
     return (*data)[index];
 }
 
 const int& Matrix::operator[](size_t index) const {
     if (index >= data->size()) {
-        throw std::out_of_range("Matrix index out of range");
+        throw std::out_of_range(
+            "Matrix::operator[] const: индекс " + std::to_string(index) +
+            " выходит за пределы [0, " + std::to_string(data->size() - 1) + "]"
+        );
     }
     return (*data)[index];
-}
-
-int& Matrix::operator*() {
-    if (data->empty()) {
-        throw std::out_of_range("Cannot dereference empty matrix");
-    }
-    return data->front();
 }
 
 size_t Matrix::size() const {

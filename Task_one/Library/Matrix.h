@@ -1,75 +1,41 @@
-﻿#ifndef MATRIX_H
-#define MATRIX_H
-
-#include <memory>
+﻿#pragma once
 #include <vector>
 #include <string>
+#include <memory>
 
+// Абстрактный базовый класс Matrix
 class Matrix {
 protected:
-    std::unique_ptr<std::vector<int>> data;
+    std::vector<int> data;
+    size_t size;
 
 public:
-    Matrix();
     Matrix(size_t size);
+    Matrix(const std::vector<int>& data);
     Matrix(const Matrix& other);
-    Matrix(Matrix&& other) noexcept;
     virtual ~Matrix() = default;
 
-    Matrix& operator=(const Matrix& other);
-    Matrix& operator=(Matrix&& other) noexcept;
+    virtual void replaceLastNegativeWithPenultimate() = 0;
+    virtual Matrix removeEvenFirstDigitElements() const = 0;
+    virtual Matrix createArrayAFromD() const = 0;
 
-    Matrix operator<<(int shift) const;
-    Matrix operator>>(int shift) const;
+    virtual std::string toString() const = 0;
+    virtual void fillFromGenerator(class Generator& generator) = 0;
 
-    int& operator[](size_t index);
-    const int& operator[](size_t index) const;
-    int& operator*();
+    virtual Matrix& operator=(const Matrix& other) = 0;
+    virtual Matrix operator<<(size_t shift) const = 0;
+    virtual Matrix operator>>(size_t shift) const = 0;
 
-    size_t size() const;
-    std::string toString() const;
-    void resize(size_t newSize);
-    void clear();
+    virtual int& operator[](size_t index) = 0;
+    virtual const int& operator[](size_t index) const = 0;
+    virtual int& at(size_t index) = 0;
+    virtual const int& at(size_t index) const = 0;
 
-    // Абстрактные методы для решения конкретных задач
-    virtual void process() = 0;
-    virtual std::string getTaskDescription() const = 0;
+    virtual size_t getSize() const;
+    virtual const std::vector<int>& getData() const;
+    virtual bool isEmpty() const;
 
-protected:
-    int getFirstDigit(int number) const;
+    virtual std::string getType() const = 0;
+
+    virtual std::string getOperationsDescription() const = 0;
 };
-
-// Класс для замены последнего отрицательного элемента предпоследним
-class NegativeReplacerMatrix : public Matrix {
-public:
-    using Matrix::Matrix;
-
-    void process() override;
-    std::string getTaskDescription() const override;
-};
-
-// Класс для удаления элементов с четной первой цифрой
-class EvenDigitRemoverMatrix : public Matrix {
-public:
-    using Matrix::Matrix;
-
-    void process() override;
-    std::string getTaskDescription() const override;
-
-    // Специфичный метод для этого класса
-    Matrix removeEvenFirstDigitElements() const;
-};
-
-// Класс для создания массива A из D по специальному правилу
-class ArrayCreatorMatrix : public Matrix {
-public:
-    using Matrix::Matrix;
-
-    void process() override;
-    std::string getTaskDescription() const override;
-
-    // Специфичный метод для этого класса
-    Matrix createArrayAFromD() const;
-};
-
-#endif
