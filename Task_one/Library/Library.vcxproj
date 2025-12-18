@@ -125,18 +125,25 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="Config.h" />
-    <ClInclude Include="ConstantsGenerator.h" />
+    <ClInclude Include="ArrayCreatorExercise.h" />
+    <ClInclude Include="ConstantGenerator.h" />
+    <ClInclude Include="EvenDigitRemoveExercise.h" />
+    <ClInclude Include="Exercise.h" />
+    <ClInclude Include="ExerciseFactory.h" />
     <ClInclude Include="Generator.h" />
     <ClInclude Include="ManualGenerator.h" />
     <ClInclude Include="Matrix.h" />
+    <ClInclude Include="NegativeReplacerExercise.h" />
     <ClInclude Include="RandomGenerator.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="ArrayCreatorExercise.cpp" />
     <ClCompile Include="ConstantGenerator.cpp" />
-    <ClCompile Include="Generator.cpp" />
+    <ClCompile Include="EvenDigitRemoveExercise.cpp" />
+    <ClCompile Include="Exercise.cpp" />
     <ClCompile Include="ManualGenerator.cpp" />
     <ClCompile Include="Matrix.cpp" />
+    <ClCompile Include="NegativeReplacerExercise.cpp" />
     <ClCompile Include="RandomGenerator.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

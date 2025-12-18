@@ -3,8 +3,7 @@
 #include "Matrix.h"
 #include "RandomGenerator.h"
 #include "ManualGenerator.h"
-#include "ConstantsGenerator.h"
-#include "Config.h"
+#include "ConstantGenerator.h"
 
 int input() {
     int value;
@@ -15,15 +14,9 @@ int input() {
 int main() {
     setlocale(LC_ALL, "Russian");
 
-    std::cout << Config::Messages::ENTER_ARRAY_SIZE;
     size_t n = input();
 
     Matrix matrix(n);
-
-    std::cout << Config::Messages::CHOOSE_FILL_METHOD;
-    std::cout << Config::Messages::OPTION_RANDOM;
-    std::cout << Config::Messages::OPTION_MANUAL;
-    std::cout << Config::Messages::OPTION_CONSTANT;
 
     int choice = input();
     std::unique_ptr<Generator> generator;
@@ -31,8 +24,6 @@ int main() {
     switch (choice) {
     case Config::CHOICE_RANDOM:
         generator = std::make_unique<RandomGenerator>(
-            Config::RANDOM_MIN_VALUE,
-            Config::RANDOM_MAX_VALUE
         );
         break;
     case Config::CHOICE_MANUAL:
@@ -71,6 +62,36 @@ int main() {
         << shiftedLeft.toString() << std::endl;
     std::cout << Config::Messages::SHIFT_RIGHT
         << shiftedRight.toString() << std::endl;
+
+    std::vector<int> testData = { 12, -5, 7, -3, 24, -8, 45 };
+    Matrix matrix(testData);
+
+    std::cout << "Исходная матрица: " << matrix.toString() << std::endl;
+    std::cout << std::endl;
+
+    // Создаем и выполняем все упражнения
+    std::vector<ExerciseType> exerciseTypes = {
+        ExerciseType::NEGATIVE_REPLACER,
+        ExerciseType::EVEN_DIGIT_REMOVER,
+        ExerciseType::ARRAY_CREATOR
+    };
+
+    for (auto type : exerciseTypes) {
+        try {
+            // Создаем упражнение
+            auto exercise = ExerciseFactory::createExercise(type, matrix);
+
+            // Выполняем
+            exercise->solve();
+
+            // Выводим результаты
+            exercise->printResults();
+
+        }
+        catch (const std::exception& e) {
+            std::cerr << "Ошибка: " << e.what() << std::endl;
+        }
+    }
 
     return 0;
 }

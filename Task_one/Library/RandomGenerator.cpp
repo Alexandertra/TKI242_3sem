@@ -7,8 +7,7 @@ RandomGenerator::RandomGenerator(int min, int max)
     std::srand(static_cast<unsigned>(std::time(nullptr)));
 }
 
-void RandomGenerator::fill(Matrix& matrix) {
-    for (size_t i = 0; i < matrix.size(); ++i) {
-        matrix[i] = minValue + std::rand() % (maxValue - minValue + 1);
-    }
+void RandomGenerator::fill(Matrix& matrix) 
+{
+    return minValue + std::rand() % (maxValue - minValue + 1);
 }

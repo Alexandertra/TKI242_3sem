@@ -1,11 +1,11 @@
-﻿#pragma once
+#pragma once
 #include "Generator.h"
 
-class ConstantsGenerator : public Generator {
+class ConstantGenerator : public Generator {
 private:
     int constantValue;
 
 public:
-    ConstantsGenerator(int value);
+    explicit ConstantGenerator(int value);
     void fill(Matrix& matrix) override;
-}; 
+};

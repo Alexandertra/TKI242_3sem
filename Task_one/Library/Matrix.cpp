@@ -83,6 +83,11 @@ std::string Matrix::toString() const {
     return oss.str();
 }
 
+void Matrix::fillFromGenerator(Generator& generator)
+{
+    generator.fill(*this);
+}
+
 void Matrix::resize(size_t newSize) {
     data->resize(newSize);
 }

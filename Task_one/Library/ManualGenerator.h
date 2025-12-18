@@ -7,6 +7,6 @@ private:
     std::function<int()> inputFunction;
 
 public:
-    ManualGenerator(std::function<int()> inputFunc);
+    explicit ManualGenerator(std::function<int()> inputFunc);
     void fill(Matrix& matrix) override;
 }; 

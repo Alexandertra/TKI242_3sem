@@ -4,38 +4,35 @@
 #include <memory>
 
 // Абстрактный базовый класс Matrix
-class Matrix {
+class Matrix 
+{
 protected:
     std::vector<int> data;
     size_t size;
 
 public:
-    Matrix(size_t size);
+    Matrix(const size_t size);
     Matrix(const std::vector<int>& data);
     Matrix(const Matrix& other);
-    virtual ~Matrix() = default;
+    ~Matrix() = default;
 
-    virtual void replaceLastNegativeWithPenultimate() = 0;
-    virtual Matrix removeEvenFirstDigitElements() const = 0;
-    virtual Matrix createArrayAFromD() const = 0;
+    std::string toString() const;
+    void fillFromGenerator(class Generator& generator);
 
-    virtual std::string toString() const = 0;
-    virtual void fillFromGenerator(class Generator& generator) = 0;
+    Matrix& operator=(const Matrix& other);
+    Matrix operator<<(size_t shift);
+    Matrix operator>>(size_t shift);
 
-    virtual Matrix& operator=(const Matrix& other) = 0;
-    virtual Matrix operator<<(size_t shift) const = 0;
-    virtual Matrix operator>>(size_t shift) const = 0;
+    int& operator[](size_t index);
+    const int& operator[](size_t index) const;
+    int& at(size_t index);
+    const int& at(size_t index) const;
 
-    virtual int& operator[](size_t index) = 0;
-    virtual const int& operator[](size_t index) const = 0;
-    virtual int& at(size_t index) = 0;
-    virtual const int& at(size_t index) const = 0;
+    size_t getSize() const;
+    const std::vector<int>& getData() const;
+    bool isEmpty() const;
 
-    virtual size_t getSize() const;
-    virtual const std::vector<int>& getData() const;
-    virtual bool isEmpty() const;
+    std::string getType() const;
 
-    virtual std::string getType() const = 0;
-
-    virtual std::string getOperationsDescription() const = 0;
+    std::string getOperationsDescription() const;
 };
