@@ -24,3 +24,11 @@ void Exercise::printResults() const {
     std::cout << "Результат: " << resultMatrix.toString() << std::endl;
     std::cout << std::endl;
 }
+
+// Информация о доступных операциях
+std::string Exercise::getAvailableOperations() const {
+    return "Доступные операции:\n"
+        "1. replaceLastNegativeWithPenultimate() - замена последнего отрицательного элемента\n"
+        "2. removeEvenFirstDigitElements() - удаление элементов с четной первой цифрой\n"
+        "3. createArrayAFromD() - создание массива A из D";
+}

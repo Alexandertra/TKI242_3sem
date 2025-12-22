@@ -1,16 +1,37 @@
 ﻿#pragma once
 #include "Exercise.h"
 
-// Класс для удаления элементов с четной первой цифрой
 class EvenDigitRemoverExercise : public Exercise {
 public:
     using Exercise::Exercise;
 
-    void solve() override;
+    void execute() override;  // Было: void solve() override;
+    void replaceLastNegativeWithPenultimate() override;
+    Matrix removeEvenFirstDigitElements() const override;
+    Matrix createArrayAFromD() const override;
+
     std::string getDescription() const override;
     std::string getName() const override;
 
 private:
-    // Вспомогательный метод
     bool hasEvenFirstDigit(int number) const;
 };
+
+// Реализация EvenDigitRemoverMatrix
+void EvenDigitRemoverExercise::process() {
+    *this = removeEvenFirstDigitElements();
+}
+
+Matrix EvenDigitRemoverExercise::removeEvenFirstDigitElements() const {
+    std::vector<int> result;
+    for (const auto& element : *data) {
+        int firstDigit = getFirstDigit(element);
+        if (firstDigit % 2 != 0) {
+            result.push_back(element);
+        }
+    }
+
+    EvenDigitRemoverExercise newMatrix;
+    *newMatrix.data = result;
+    return newMatrix;
+}

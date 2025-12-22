@@ -14,8 +14,13 @@ public:
     explicit Exercise(const Matrix& matrix);
     virtual ~Exercise() = default;
 
-    // Чисто виртуальный метод - каждая задача реализует свою логику
-    virtual void solve() = 0;
+    // Чисто виртуальный метод execute() - каждая задача реализует свою логику выполнения
+    virtual void execute() = 0;
+
+    // Три основные задачи как чисто виртуальные функции
+    virtual void replaceLastNegativeWithPenultimate() = 0;
+    virtual Matrix removeEvenFirstDigitElements() const = 0;
+    virtual Matrix createArrayAFromD() const = 0;
 
     // Виртуальный метод для получения описания задачи
     virtual std::string getDescription() const = 0;
@@ -29,4 +34,7 @@ public:
 
     // Метод для вывода результатов
     virtual void printResults() const;
+
+    // Метод для получения информации о доступных операциях
+    virtual std::string getAvailableOperations() const;
 };
